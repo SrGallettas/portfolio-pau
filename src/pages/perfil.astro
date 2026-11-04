@@ -1,0 +1,37 @@
+---
+import Document from '../layouts/Document.astro';
+import { profile } from '../data/profile';
+---
+<Document title="Perfil profesional" description="Currículum de Pau Vila Palop, desarrollador full stack junior con experiencia en Angular y proyectos con React, PHP y Laravel.">
+<section class="profile-page section">
+  <div class="profile-toolbar">
+    <a class="back-link" href="/"><i data-lucide="arrow-left"></i> Portfolio</a>
+    <button id="print-profile"><i data-lucide="printer"></i> Imprimir</button>
+    <a href="/perfil-pau.pdf" download><i data-lucide="download"></i> Descargar currículum</a>
+  </div>
+  <div class="profile-heading">
+    <div><span class="eyebrow">PERFIL PROFESIONAL</span><h1>Pau Vila Palop<span>.</span></h1><p>Desarrollador full stack junior</p></div>
+    <span class="profile-availability">Buscando mi primera oportunidad</span>
+  </div>
+  <div class="profile-grid">
+    <aside>
+      <section><h2>Contacto</h2>{profile.email && <a href={`mailto:${profile.email}`}>{profile.email}</a>}{profile.linkedin && <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>}<a href={profile.github} target="_blank" rel="noopener noreferrer">github.com/SrGallettas</a></section>
+      <section><h2>Formación</h2><p>Técnico Superior en Desarrollo de Aplicaciones Web</p><span>IES Maria Enríquez · Gandía<br/>2024–2026</span></section>
+      <section><h2>Tecnologías</h2><p>HTML · CSS · JavaScript · React · Angular</p><p>PHP · Laravel · Java · Node.js</p><p>SQL · AWS · Power BI</p><p>Git · GitHub Actions · Docker</p></section>
+      <section><h2>Idiomas</h2><p>Español · Valenciano<br/>Inglés (B2)</p></section>
+      <section><h2>Movilidad</h2><p>Carnet de conducir B<br/>Vehículo propio</p></section>
+    </aside>
+    <div class="profile-main">
+      <section><h2>Presentación</h2><p>Técnico Superior en Desarrollo de Aplicaciones Web, con experiencia formativa en Angular y proyectos propios desarrollados de forma autónoma. Desarrollo aplicaciones con React, PHP y Laravel, integrando autenticación, bases de datos y APIs. Busco incorporarme a un equipo de desarrollo web y seguir creciendo profesionalmente.</p></section>
+      <section><h2>Experiencia</h2><h3>Locatec · Desarrollo web en prácticas</h3><span>Febrero – junio de 2026 · Gandía</span><p>Desarrollo en Angular dentro de un proyecto de automatización de facturas.</p></section>
+      <section><h2>Proyectos personales</h2><h3>Bellreguard Basket</h3><span>Plataforma de gestión deportiva</span><p>Web de un club deportivo con panel de administración, roles y gestión de equipos, partidos, clasificaciones y noticias.</p><p class="profile-stack">PHP · Laravel · Blade · SQL</p><p class="profile-project-links"><a href="https://bellreguardcb.es/" target="_blank" rel="noopener noreferrer">Ver web</a><a href="https://github.com/SrGallettas/ProyectoBasket" target="_blank" rel="noopener noreferrer">GitHub</a></p></section>
+      <section><h3>Lumera</h3><span>Plataforma inmobiliaria</span><p>Aplicación con catálogo y filtros de inmuebles, registro de usuarios, favoritos y chat privado en tiempo real.</p><p class="profile-stack">React · JavaScript · Supabase</p><p class="profile-project-links"><a href="https://github.com/SrGallettas/-Inmobiliaria" target="_blank" rel="noopener noreferrer">Repositorio</a></p></section>
+      <section><h3>ComparaKeys</h3><span>Buscador de videojuegos</span><p>Buscador que integra APIs de videojuegos y consulta su disponibilidad en distintas tiendas.</p><p class="profile-stack">PHP · Laravel · Docker · APIs</p><p class="profile-project-links"><a href="https://github.com/SrGallettas/STEAM-KEYS" target="_blank" rel="noopener noreferrer">Repositorio</a></p></section>
+      <section><h2>Competencias</h2><p>Autonomía · Resolución de problemas · Aprendizaje continuo · Adaptabilidad</p></section>
+    </div>
+  </div>
+</section>
+</Document>
+<style is:global>
+  @media print { html, body { background: #fff !important; } }
+</style>

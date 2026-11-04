@@ -1,0 +1,66 @@
+---
+const shots = [
+  {file:'equipo', title:'El equipo, en primer plano', text:'Plantilla y fichas de jugadores.', area:'Web pública'},
+  {file:'clasificacion', title:'La temporada de un vistazo', text:'Clasificación y evolución de la competición.', area:'Web pública'},
+  {file:'estadisticas', title:'El juego, en números', text:'Estadísticas acumuladas del equipo.', area:'Web pública'},
+  {file:'partidos', title:'Cada partido al detalle', text:'Resultados y comparativa entre equipos.', area:'Web pública'},
+  {file:'noticias', title:'Lo que pasa en el club', text:'Noticias, campus y novedades.', area:'Web pública'},
+  {file:'galeria', title:'Momentos que hacen equipo', text:'Álbumes de partidos, entrenamientos y eventos.', area:'Web pública'},
+  {file:'tienda', title:'Los colores del club', text:'Catálogo de productos y cesta.', area:'Web pública'},
+  {file:'administracion', title:'Todo empieza aquí', text:'Acceso a las áreas de gestión del club.', area:'Administración'},
+  {file:'editar-equipo', title:'La gestión por dentro', text:'Edición de equipos y su información pública.', area:'Administración'},
+];
+---
+<section class="basket-showcase section" aria-labelledby="showcase-title">
+  <div class="showcase-heading"><div><h2 id="showcase-title">Dentro del club<span>.</span></h2></div></div>
+  <figure class="demo-film">
+    <div class="film-bar"><span><span class="live-dot"></span> BELLREGUARD BASKET</span><span>RECORRIDO EN VÍDEO</span></div>
+    <video controls playsinline preload="none" poster="/work/bellreguard/galeria.webp" aria-label="Vídeo de demostración de Bellreguard Basket"><source src="/work/bellreguard/recorrido.webm" type="video/webm"/>Tu navegador no admite este vídeo. <a href="/work/bellreguard/recorrido.webm">Abrir vídeo</a></video>
+    <figcaption><span>01 / LA APLICACIÓN EN ACCIÓN</span><span>Reproduce el vídeo para explorar el proyecto.</span></figcaption>
+  </figure>
+  <div class="gallery-heading"><div><h3>Un club. Muchas historias.</h3></div></div>
+  <div class="gallery-grid">
+    {shots.map((shot, index) => <a class:list={['gallery-card', {'gallery-card-wide':index===0}]} href={`/work/bellreguard/${shot.file}.webp`} data-gallery-shot data-title={shot.title} data-caption={shot.text} aria-label={`Ampliar: ${shot.title}`}><div class="shot-frame"><img src={`/work/bellreguard/${shot.file}-preview.webp`} srcset={`/work/bellreguard/${shot.file}-preview.webp 880w, /work/bellreguard/${shot.file}.webp 1853w`} sizes={index===0 ? '(max-width: 700px) 90vw, 80vw' : '(max-width: 700px) 90vw, 44vw'} width="1853" height="962" loading="lazy" alt={`${shot.title}. ${shot.text}`}/><span class="shot-zoom" aria-hidden="true">↗</span></div><div class="shot-label"><span>{String(index+1).padStart(2,'0')} / {shot.area}</span><h4>{shot.title}</h4><p>{shot.text}</p></div></a>)}
+  </div>
+  <dialog class="gallery-dialog" aria-label="Galería de capturas de Bellreguard Basket">
+    <div class="viewer-toolbar"><span data-counter aria-live="polite"></span><button type="button" data-close aria-label="Cerrar galería">Cerrar <span aria-hidden="true">×</span></button></div>
+    <img data-full-image width="1853" height="962" alt=""/>
+    <div class="viewer-bottom"><button type="button" data-prev aria-label="Captura anterior">←</button><div aria-live="polite"><h3 data-title></h3><p data-description></p></div><button type="button" data-next aria-label="Captura siguiente">→</button></div>
+  </dialog>
+</section>
+<script>
+const gallery = document.querySelector('.basket-showcase');
+if (gallery) {
+ const shots = Array.from(gallery.querySelectorAll<HTMLAnchorElement>('[data-gallery-shot]'));
+ const dialog = gallery.querySelector<HTMLDialogElement>('dialog')!;
+ const fullImage = dialog.querySelector<HTMLImageElement>('[data-full-image]')!;
+ let current = 0;
+ let previousOverflow = '';
+ function show(index: number) {
+  current = (index + shots.length) % shots.length;
+  const shot = shots[current];
+  fullImage.src = shot.href;
+  fullImage.alt = `${shot.dataset.title}. ${shot.dataset.caption}`;
+  dialog.querySelector('[data-title]')!.textContent = shot.dataset.title!;
+  dialog.querySelector('[data-description]')!.textContent = shot.dataset.caption!;
+  dialog.querySelector('[data-counter]')!.textContent = `${String(current + 1).padStart(2, '0')} / ${String(shots.length).padStart(2, '0')}`;
+ }
+ shots.forEach((shot,index)=>shot.addEventListener('click',event=>{
+  if(event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+  event.preventDefault(); show(index); previousOverflow = document.body.style.overflow;
+  dialog.showModal(); document.body.style.overflow='hidden';
+ }));
+ dialog.querySelector('[data-close]')!.addEventListener('click',()=>dialog.close());
+ dialog.querySelector('[data-prev]')!.addEventListener('click',()=>show(current-1));
+ dialog.querySelector('[data-next]')!.addEventListener('click',()=>show(current+1));
+ dialog.addEventListener('keydown',event=>{
+  if(event.key==='ArrowLeft') {event.preventDefault(); show(current-1);}
+  if(event.key==='ArrowRight') {event.preventDefault(); show(current+1);}
+ });
+ dialog.addEventListener('click',event=>{if(event.target===dialog) dialog.close();});
+ dialog.addEventListener('close',()=>{document.body.style.overflow=previousOverflow;});
+}
+</script>
+<style>
+.basket-showcase{padding-top:30px;padding-bottom:70px}.showcase-heading,.gallery-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:30px}.showcase-heading h2{font-size:clamp(36px,5vw,66px);line-height:1.1;margin-top:15px}.showcase-heading h2 span{color:var(--blue)}.showcase-heading>p,.gallery-heading>p{font-size:13px;line-height:1.8;color:#626c57}.demo-film{margin:0;background:#101723;border-radius:12px;overflow:hidden;box-shadow:0 20px 55px #17251f18}.film-bar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:18px 24px;color:#dce5df;font-size:9px;letter-spacing:1px}.film-bar>span:first-child{display:flex;align-items:center;gap:9px}.live-dot{width:7px;height:7px;border-radius:50%;background:var(--lime)}video{display:block;width:100%;aspect-ratio:1853/962;background:#090d17;object-fit:contain}.demo-film figcaption{display:flex;justify-content:space-between;gap:16px;padding:20px 24px;color:#c5cecb;font-size:11px;line-height:1.6}.demo-film figcaption>span:first-child{color:var(--lime);font-size:9px;letter-spacing:1px}.gallery-heading{margin-top:65px}.gallery-heading h3{font-size:28px;margin-top:12px}.gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:35px 28px}.gallery-card{display:block;min-width:0}.gallery-card-wide{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);align-items:center;background:#e8ecdf;border-radius:10px;overflow:hidden}.shot-frame{position:relative;overflow:hidden;border-radius:8px;background:#0d1220;border:1px solid #1e293b}.shot-frame img{display:block;width:100%;height:auto;transition:transform .3s}.gallery-card:hover img{transform:scale(1.025)}.shot-zoom{position:absolute;right:12px;bottom:12px;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--lime);color:#202922;font-size:23px;box-shadow:0 2px 12px #0003}.shot-label{padding-top:18px}.shot-label>span{font-size:9px;color:#64705a;text-transform:uppercase;letter-spacing:1px}.shot-label h4{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:500;margin:10px 0 7px}.shot-label p{font-size:13px;color:#626c57;line-height:1.7}.gallery-card-wide .shot-label{padding:30px}.gallery-card-wide .shot-frame{border-radius:0}.gallery-dialog{width:min(1400px,96vw);max-width:96vw;max-height:94dvh;margin:auto;padding:0;border:1px solid #364139;border-radius:12px;background:#101723;color:#f3f4ef;box-shadow:0 30px 100px #0008}.gallery-dialog::backdrop{background:#080d16e8;backdrop-filter:blur(8px)}.viewer-toolbar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;font-size:12px;color:#c5cecb}.gallery-dialog button{border:1px solid #57645f;background:transparent;color:inherit;border-radius:6px;min-width:44px;min-height:44px;font-size:20px}.viewer-toolbar button{display:flex;align-items:center;gap:15px;font-size:12px;padding:0 12px}.viewer-toolbar button span{font-size:24px}.gallery-dialog button:hover{background:#27332f}.gallery-dialog button:focus-visible{outline-color:var(--lime);outline-offset:2px}.gallery-dialog>img{display:block;width:100%;height:auto;max-height:calc(94dvh - 180px);object-fit:contain;background:#090d17}.viewer-bottom{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:18px 20px}.viewer-bottom>div{text-align:center}.viewer-bottom h3{font-size:18px}.viewer-bottom p{font-size:12px;color:#c5cecb;margin-top:6px;line-height:1.5}@media(max-width:700px){.showcase-heading,.gallery-heading{display:block}.showcase-heading>p,.gallery-heading>p{margin-top:15px}.film-bar{padding:15px 12px;font-size:7px;letter-spacing:.5px}.demo-film figcaption{padding:16px;flex-direction:column;gap:6px}.gallery-grid{grid-template-columns:1fr;gap:28px}.gallery-card-wide{display:block}.gallery-card-wide .shot-label{padding:20px}.gallery-heading{margin-top:40px}.gallery-heading h3{font-size:25px}.shot-label h4{font-size:21px}.viewer-bottom{padding:12px;gap:10px}.viewer-bottom h3{font-size:14px}.viewer-bottom p{font-size:11px}.gallery-dialog>img{max-height:calc(94dvh - 210px)}.basket-showcase{padding-bottom:40px}}@media(prefers-reduced-motion:reduce){.shot-frame img{transition:none}}
+</style>

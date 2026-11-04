@@ -1,0 +1,81 @@
+---
+import Document from '../../layouts/Document.astro';
+import BasketGallery from '../../components/BasketGallery.astro';
+---
+<Document title="Bellreguard Basket" description="Proyecto individual de DAW: una aplicación Laravel para la información pública y la gestión de un club de baloncesto.">
+<section class="case-intro basket-intro section">
+  <a class="back-link" href="/#trabajo"><i data-lucide="arrow-left"></i> Todos los proyectos</a>
+  <h1>Bellreguard<br/>Basket<span>.</span></h1>
+  <div class="basket-intro-copy">
+    <p class="basket-lead">Una web para seguir el día a día del club y llevar su gestión desde un mismo sitio.</p>
+    <p>Hice Bellreguard Basket como proyecto final de DAW. La parte pública muestra equipos, partidos y contenido del club; el panel permite mantenerlo todo al día. Me ocupé de las vistas con Blade y CSS, la lógica en Laravel, los datos y los permisos de cada rol.</p>
+  </div>
+  <dl class="case-facts"><div><dt>DESARROLLO</dt><dd>Individual</dd></div><div><dt>TECNOLOGÍA PRINCIPAL</dt><dd>Laravel 12</dd></div><div><dt>ALCANCE</dt><dd>Frontend y backend</dd></div><div><dt>CÓDIGO</dt><dd><a href="https://github.com/SrGallettas/ProyectoBasket" target="_blank" rel="noopener noreferrer">Repositorio público</a></dd></div></dl>
+</section>
+<BasketGallery/>
+<section class="basket-features section" aria-labelledby="basket-features-title">
+  <div class="basket-features-heading"><h2 id="basket-features-title">Lo que hay dentro<span>.</span></h2></div>
+  <div class="basket-feature-list">
+    <article class="basket-feature"><span class="basket-feature-tag">EN LA PISTA</span><h3>Partidos y equipos</h3><p>Plantillas, calendario, resultados, clasificaciones y estadísticas para seguir la temporada.</p></article>
+    <article class="basket-feature"><span class="basket-feature-tag">EN EL CLUB</span><h3>Noticias y tienda</h3><p>Actualidad, galerías y productos del club, con cesta y pedidos por correo.</p></article>
+    <article class="basket-feature"><span class="basket-feature-tag">ENTRE BASTIDORES</span><h3>Panel de gestión</h3><p>Administradores, entrenadores y editores tienen acceso a las herramientas que necesitan para su trabajo.</p></article>
+  </div>
+</section>
+<section class="basket-technical section" aria-labelledby="basket-technical-title">
+  <div class="basket-technical-heading"><span class="eyebrow">CÓMO LO HICE</span><h2 id="basket-technical-title">También por<br/>dentro<span>.</span></h2><p>El proyecto va más allá de las pantallas: desarrollé la lógica, los permisos, las pruebas y el despliegue.</p></div>
+  <div class="basket-technical-body">
+    <div class="basket-technical-item"><span>01 / APLICACIÓN</span><div><h3>Laravel organiza la lógica.</h3><p>Controladores y servicios se encargan de las áreas del club y de los partidos. Las vistas públicas combinan Blade y CSS; Vite carga el JavaScript.</p></div></div>
+    <div class="basket-technical-item"><span>02 / COMPROBACIÓN</span><div><h3>Permisos y flujos probados.</h3><p>Las pruebas funcionales cubren los accesos por rol, las páginas públicas y los flujos principales de la aplicación.</p></div></div>
+    <div class="basket-technical-item"><span>03 / DESPLIEGUE</span><div><h3>Del proyecto al VPS.</h3><p>Un script prepara el build, transfiere la aplicación y ejecuta las tareas de Laravel necesarias para publicarla.</p></div></div>
+    <div class="basket-stack"><span>TECNOLOGÍAS</span><ul><li>PHP</li><li>Laravel</li><li>Blade</li><li>CSS</li><li>SQL</li><li>Vite</li></ul></div>
+  </div>
+</section>
+<a class="next-project section" href="/proyectos/portfolio"><span>SIGUIENTE PROYECTO</span><strong>Mi espacio en la web</strong><i data-lucide="arrow-up-right"></i></a>
+</Document>
+
+<style>
+.basket-intro{padding-bottom:44px}.basket-intro h1{margin-bottom:32px}.basket-intro-copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8vw;align-items:start}.basket-intro-copy p{max-width:590px;font-size:16px;line-height:1.8;color:#525d49}.basket-intro-copy .basket-lead{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,2.8vw,38px);line-height:1.28;color:#22251f}.basket-intro .case-facts{margin-top:38px}.basket-features{border-top:1px solid var(--line);padding-top:64px;padding-bottom:75px}.basket-features-heading{display:flex;justify-content:space-between;align-items:start;gap:30px;margin-bottom:30px}.basket-features-heading h2{font-size:clamp(34px,4.2vw,56px);line-height:1.05;max-width:620px}.basket-features-heading h2 span{color:var(--blue)}.basket-feature-list{border-top:1px solid var(--line)}.basket-feature{display:grid;grid-template-columns:minmax(125px,1fr) minmax(220px,1.25fr) minmax(250px,1.65fr);align-items:center;gap:24px;padding:31px 0;border-bottom:1px solid var(--line)}.basket-feature-tag{font-size:10px;letter-spacing:.09em;font-weight:700;color:var(--blue)}.basket-feature h3{font-size:clamp(22px,2.4vw,31px);line-height:1.2}.basket-feature p{max-width:520px;font-size:14px;line-height:1.75;color:#626c57}@media(max-width:700px){.basket-intro{padding-bottom:36px}.basket-intro h1{margin-bottom:22px}.basket-intro-copy{grid-template-columns:1fr;gap:16px}.basket-intro-copy .basket-lead{font-size:27px}.basket-intro-copy p{font-size:14px;line-height:1.7}.basket-intro .case-facts{margin-top:28px}.basket-features{padding-top:42px;padding-bottom:50px}.basket-features-heading{display:block;margin-bottom:25px}.basket-features-heading h2{font-size:36px;margin-top:13px}.basket-feature{grid-template-columns:1fr;gap:9px;padding:24px 0}.basket-feature h3{font-size:25px}.basket-feature p{font-size:13px}}
+.basket-intro h1{margin-top:64px}
+.basket-intro .case-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding:0;border:0;overflow:visible;background:transparent}
+.basket-intro .case-facts>div{--card-accent:#294ae8;position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:156px;min-width:0;padding:20px 22px;border:1px solid #cbd1c4;border-radius:7px;background:#edf0e8;color:#22251f;overflow:hidden;transform:perspective(700px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)) translateY(var(--lift,0px));transition:transform .25s ease,background .25s ease,color .25s ease,box-shadow .25s ease;will-change:transform}
+.basket-intro .case-facts>div:nth-child(2){--card-accent:#365f4e}.basket-intro .case-facts>div:nth-child(3){--card-accent:#292e28}.basket-intro .case-facts>div:nth-child(4){--card-accent:#7d443e}
+.basket-intro .case-facts>div::after{content:'↗';position:absolute;top:12px;right:16px;font-family:'Space Grotesk',sans-serif;font-size:22px;line-height:1;color:var(--card-accent);transition:transform .25s,color .25s}
+.basket-intro .case-facts dt{max-width:80%;font-size:10px;font-weight:700;letter-spacing:.08em;line-height:1.4;color:#5c6759;transition:color .25s}
+.basket-intro .case-facts dd{max-width:190px;margin:0;font-family:'Space Grotesk',sans-serif;font-size:clamp(19px,1.75vw,25px);line-height:1.12;color:inherit;overflow-wrap:anywhere}
+@media(hover:hover){.basket-intro .case-facts>div:hover{--lift:-5px;background:var(--card-accent);color:white;box-shadow:0 14px 24px #20292224}.basket-intro .case-facts>div:hover dt,.basket-intro .case-facts>div:hover::after{color:white}.basket-intro .case-facts>div:hover::after{transform:translate(3px,-3px)}}
+.basket-technical{display:grid;grid-template-columns:minmax(240px,.8fr) minmax(0,1.4fr);gap:7vw;padding-top:76px;padding-bottom:82px;background:#17231f;color:#f4f5ec}
+.basket-technical-heading{align-self:start;position:sticky;top:30px}
+.basket-technical-heading .eyebrow{color:var(--lime);letter-spacing:.1em}
+.basket-technical h2{font-size:clamp(40px,5vw,69px);line-height:1.05;margin:20px 0 23px}
+.basket-technical h2 span{color:var(--lime)}
+.basket-technical-heading>p{max-width:330px;font-size:15px;line-height:1.75;color:#bec9bd}
+.basket-technical-item{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:26px 0;border-top:1px solid #f4f5ec35}
+.basket-technical-item>span,.basket-stack>span{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--lime)}
+.basket-technical-item h3{font-size:clamp(21px,2.1vw,28px);line-height:1.2;margin:-4px 0 12px}
+.basket-technical-item p{max-width:540px;font-size:14px;line-height:1.75;color:#bec9bd}
+.basket-stack{display:grid;grid-template-columns:150px 1fr;gap:20px;padding-top:28px;border-top:1px solid #f4f5ec35}
+.basket-stack ul{display:flex;flex-wrap:wrap;gap:9px;list-style:none;padding:0;margin:0}
+.basket-stack li{padding:9px 13px;border:1px solid #f4f5ec55;border-radius:100px;font-size:12px;color:#f4f5ec}
+@media(max-width:1000px){.basket-intro .case-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.basket-technical{gap:35px}.basket-technical-item,.basket-stack{grid-template-columns:1fr;gap:13px}}
+@media(max-width:700px){.basket-intro h1{margin-top:45px}.basket-intro .case-facts{gap:10px}.basket-intro .case-facts>div{min-height:124px;padding:15px}.basket-intro .case-facts dt{font-size:8px}.basket-intro .case-facts dd{font-size:17px}.basket-intro .case-facts>div::after{top:10px;right:12px;font-size:19px}.basket-technical{grid-template-columns:1fr;gap:27px;padding-top:48px;padding-bottom:55px}.basket-technical-heading{position:static}.basket-technical h2{font-size:44px;margin:14px 0}.basket-technical-heading>p{font-size:14px}.basket-technical-item{padding:22px 0}.basket-technical-item h3{font-size:24px}.basket-technical-item p{font-size:13px}.basket-stack{padding-top:22px}}
+@media(prefers-reduced-motion:reduce){.basket-intro .case-facts>div,.basket-intro .case-facts>div::after{transition:none;transform:none}}
+</style>
+<script>
+const facts = document.querySelectorAll<HTMLElement>('.basket-intro .case-facts > div');
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  facts.forEach(card => {
+    card.addEventListener('pointermove', event => {
+      if (event.pointerType !== 'mouse') return;
+      const box = card.getBoundingClientRect();
+      const x = (event.clientX - box.left) / box.width - .5;
+      const y = (event.clientY - box.top) / box.height - .5;
+      card.style.setProperty('--tilt-x', `${(-y * 8).toFixed(2)}deg`);
+      card.style.setProperty('--tilt-y', `${(x * 8).toFixed(2)}deg`);
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.removeProperty('--tilt-x');
+      card.style.removeProperty('--tilt-y');
+    });
+  });
+}
+</script>

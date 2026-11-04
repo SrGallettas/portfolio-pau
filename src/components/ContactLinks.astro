@@ -1,0 +1,9 @@
+---
+import { profile } from '../data/profile';
+---
+<div class="contact-links">
+  {profile.email && <a href={`mailto:${profile.email}`}><span><small>CORREO</small>{profile.email}</span><i data-lucide="arrow-up-right"></i></a>}
+  {profile.linkedin && <a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><span><small>PERFIL PROFESIONAL</small>LinkedIn</span><i data-lucide="arrow-up-right"></i></a>}
+  <a href="/perfil-pau.pdf" download><span><small>EXPERIENCIA Y PROYECTOS</small>Descargar currículum</span><i data-lucide="download"></i></a>
+  <a href={profile.github} target="_blank" rel="noopener noreferrer"><span><small>CÓDIGO</small>GitHub · SrGallettas</span><i data-lucide="arrow-up-right"></i></a>
+</div>
