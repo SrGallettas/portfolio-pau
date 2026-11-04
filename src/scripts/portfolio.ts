@@ -4,6 +4,20 @@ const icons = { ArrowUpRight, ArrowDownRight, ArrowRight, Asterisk, Pause, Play,
 const refreshIcons = () => createIcons({ icons });
 refreshIcons();
 
+const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');
+const mainNav = document.querySelector<HTMLElement>('#main-nav');
+menuButton?.addEventListener('click', () => {
+  const open = menuButton.getAttribute('aria-expanded') !== 'true';
+  menuButton.setAttribute('aria-expanded', String(open));
+  const label = menuButton.querySelector<HTMLElement>('.sr-only');
+  if (label) label.textContent = open ? 'Cerrar menú' : 'Abrir menú';
+  mainNav?.classList.toggle('is-open', open);
+});
+mainNav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+  menuButton?.setAttribute('aria-expanded', 'false');
+  mainNav.classList.remove('is-open');
+}));
+
 const ticker = document.querySelector<HTMLElement>('.ticker');
 const tickerTrack = ticker?.querySelector<HTMLElement>('.ticker-track');
 const tickerRun = tickerTrack?.querySelector<HTMLElement>('.ticker-run');
@@ -208,11 +222,15 @@ try {
   sculpture.rotation.set(.4, .3, -.3); scene.add(sculpture);
   let targetX = 0, targetY = 0, phase = 0, visible = true, frame = 0, previous = 0;
   function resize() {
-    const width = hero.clientWidth, height = hero.clientHeight;
+    const phoneLayout = hero.clientWidth <= 700;
+    const width = phoneLayout ? canvas.clientWidth : hero.clientWidth;
+    const height = phoneLayout ? canvas.clientHeight : hero.clientHeight;
     renderer.setSize(width, height, false); camera.aspect = width / height; camera.updateProjectionMatrix();
-    const mobile = width <= 700;
-    sculpture.scale.setScalar(mobile ? (height < 600 ? .28 : .36) : .98);
-    sculpture.position.set(mobile ? .5 : 2.45, mobile ? .1 : .3, 0);
+    const phone = hero.clientWidth <= 700;
+    const tablet = hero.clientWidth > 700 && hero.clientWidth <= 1050;
+    const scale = phone ? (hero.clientHeight < 600 ? .28 : .36) : tablet ? .76 : .98;
+    sculpture.scale.setScalar(scale);
+    sculpture.position.set(phone ? .85 : tablet ? 1.35 : 2.45, phone ? -.25 : tablet ? -.15 : .3, 0);
     renderer.render(scene, camera);
   }
   new ResizeObserver(resize).observe(hero);
